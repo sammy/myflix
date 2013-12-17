@@ -12,5 +12,15 @@ describe Video do
     monk = Video.create(title: "Monk", description: "Some description", category: drama)
     expect(monk.category).to eq(drama)
   end
+
+  it "validates title" do
+    video = Video.create(description: "Some description")
+    expect(video.errors.messages[:title]).to eq(["can't be blank"])
+  end
+
+  it "validates description" do
+    video = Video.create(title: "Simone")
+    expect(video.errors.messages[:description]).to eq(["can't be blank"])
+  end
 end
 
