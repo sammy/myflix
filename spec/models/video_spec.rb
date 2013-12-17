@@ -16,11 +16,13 @@ describe Video do
   it "validates title" do
     video = Video.create(description: "Some description")
     expect(video.errors.messages[:title]).to eq(["can't be blank"])
+    expect(Video.count).to eq(0)
   end
 
   it "validates description" do
     video = Video.create(title: "Simone")
     expect(video.errors.messages[:description]).to eq(["can't be blank"])
+    expect(Video.count).to eq(0)
   end
 end
 
