@@ -9,13 +9,15 @@ gem 'sass-rails'
 gem 'uglifier'
 gem 'jquery-rails'
 
-group :development do
+group :development, :test do
   gem 'sqlite3'
   gem 'pry'
   gem 'pry-nav'
   gem 'thin'
   gem "better_errors"
   gem "binding_of_caller"
+  gem "meta_request"
+  gem "rspec-rails"
 end
 
 group :production do
