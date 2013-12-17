@@ -17,7 +17,14 @@ group :development, :test do
   gem "better_errors"
   gem "binding_of_caller"
   gem "meta_request"
+end
+
+group :development, :test do
   gem "rspec-rails"
+end
+
+group :test do
+  gem "shoulda-matchers"
 end
 
 group :production do
