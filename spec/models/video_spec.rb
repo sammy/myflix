@@ -13,3 +13,4 @@ describe Video do
     expect(monk.category).to eq(drama)
   end
 end
+
