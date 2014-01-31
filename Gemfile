@@ -10,6 +10,7 @@ gem 'uglifier'
 gem 'jquery-rails'
 gem 'bootstrap_form'
 gem 'bcrypt-ruby'
+gem 'therubyracer'
 
 group :development, :test do
   gem 'sqlite3'
@@ -19,6 +20,8 @@ group :development, :test do
   gem "better_errors"
   gem "binding_of_caller"
   gem "meta_request"
+  gem "brakeman"
+  gem "fabrication"
 end
 
 group :development, :test do
