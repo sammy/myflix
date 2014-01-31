@@ -22,6 +22,7 @@ group :development, :test do
   gem "meta_request"
   gem "brakeman"
   gem "fabrication"
+  gem "faker"
 end
 
 group :development, :test do

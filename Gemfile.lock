@@ -64,6 +64,8 @@ GEM
     eventmachine (1.0.0)
     execjs (2.0.2)
     fabrication (2.9.6)
+    faker (1.2.0)
+      i18n (~> 0.5)
     fastercsv (1.5.5)
     haml (4.0.4)
       tilt
@@ -195,6 +197,7 @@ DEPENDENCIES
   brakeman
   coffee-rails
   fabrication
+  faker
   haml-rails
   jquery-rails
   meta_request
