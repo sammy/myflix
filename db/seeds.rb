@@ -6,28 +6,14 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Video.create(title: 'Southpark', description: 'Hilarious cartoon movie', small_cover_url: 'southpark.jpg', large_cover_url: 'southpark_large.jpg', category_id: '2')
-Video.create(title: 'Futurama', description: 'A cartoon series', small_cover_url: 'futurama.jpg', large_cover_url: 'futurama_large.jpg', category_id: '1')
-Video.create(title: 'Fear and loathing in Las Vegas', description: 'A movie about Hunter Thompson and the 60 movement', small_cover_url: 'fear_and_loathing.jpg', large_cover_url: 'fear_and_loathing_large.jpg', category_id: '3')
-Video.create(title: 'Southpark', description: 'Hilarious cartoon movie', small_cover_url: 'southpark.jpg', large_cover_url: 'southpark_large.jpg', category_id: '2')
-Video.create(title: 'Southpark', description: 'Hilarious cartoon movie', small_cover_url: 'southpark.jpg', large_cover_url: 'southpark_large.jpg', category_id: '1')
-Video.create(title: 'Southpark', description: 'Hilarious cartoon movie', small_cover_url: 'southpark.jpg', large_cover_url: 'southpark_large.jpg', category_id: '3')
-Video.create(title: 'Futurama', description: 'A cartoon series', small_cover_url: 'futurama.jpg', large_cover_url: 'futurama_large.jpg', category_id: '1')
-Video.create(title: 'Futurama', description: 'A cartoon series', small_cover_url: 'futurama.jpg', large_cover_url: 'futurama_large.jpg', category_id: '2')
-Video.create(title: 'Futurama', description: 'A cartoon series', small_cover_url: 'futurama.jpg', large_cover_url: 'futurama_large.jpg', category_id: '3')
-Video.create(title: 'Monk', description: 'A cartoon series', small_cover_url: 'monk.jpg', large_cover_url: 'monk_large.jpg', category_id: '1')
-Video.create(title: 'Monk', description: 'A cartoon series', small_cover_url: 'monk.jpg', large_cover_url: 'monk_large.jpg', category_id: '2')
-Video.create(title: 'Monk', description: 'A cartoon series', small_cover_url: 'monk.jpg', large_cover_url: 'monk_large.jpg', category_id: '3')
-Video.create(title: 'Southpark', description: 'Hilarious cartoon movie', small_cover_url: 'southpark.jpg', large_cover_url: 'southpark_large.jpg', category_id: '2')
-Video.create(title: 'Southpark', description: 'Hilarious cartoon movie', small_cover_url: 'southpark.jpg', large_cover_url: 'southpark_large.jpg', category_id: '1')
-Video.create(title: 'Southpark', description: 'Hilarious cartoon movie', small_cover_url: 'southpark.jpg', large_cover_url: 'southpark_large.jpg', category_id: '3')
-Video.create(title: 'Futurama', description: 'A cartoon series', small_cover_url: 'futurama.jpg', large_cover_url: 'futurama_large.jpg', category_id: '1')
-Video.create(title: 'Futurama', description: 'A cartoon series', small_cover_url: 'futurama.jpg', large_cover_url: 'futurama_large.jpg', category_id: '2')
-Video.create(title: 'Futurama', description: 'A cartoon series', small_cover_url: 'futurama.jpg', large_cover_url: 'futurama_large.jpg', category_id: '3')
-Video.create(title: 'Monk', description: 'A cartoon series', small_cover_url: 'monk.jpg', large_cover_url: 'monk_large.jpg', category_id: '1')
-Video.create(title: 'Monk', description: 'A cartoon series', small_cover_url: 'monk.jpg', large_cover_url: 'monk_large.jpg', category_id: '2')
-Video.create(title: 'Monk', description: 'A cartoon series', small_cover_url: 'monk.jpg', large_cover_url: 'monk_large.jpg', category_id: '3')
-Category.create(name: 'Drama')
-Category.create(name: 'Comedy')
-Category.create(name: 'Action')
-Category.create(name: 'Documentary')
+movies = ["Southpark", "Futurama", "Monk", "Fear and Loathing in Las Vegas", "The Hunt", "De zwarte boek", "Attenberg", "From Dusk till Dawn", "The Experiment"]
+
+5.times { Category.create(name: Faker::Commerce.department)}
+
+50.times do
+  movie = movies.sample
+  Video.create(title: movie, description: Faker::Lorem.paragraph(Random.rand(1..3)), small_cover_url: "http://placehold.it/166x236.jpg&text=#{movie}", large_cover_url: "http://placehold.it/655x375.jpg&text=#{movie}", category: Category.find(Random.rand(1..5))) 
+end
+
+15.times { User.create(email: Faker::Internet.email, full_name: Faker::Name.name, password: "secret") }
+100.times { Review.create(content: Faker::Lorem.paragraph(Random.rand(1..4)), user: User.find(Random.rand(1..User.count)), video: Video.find(Random.rand(1..Video.count)), rating: Random.rand(1..5) ) }
