@@ -12,7 +12,7 @@ movies = ["Southpark", "Futurama", "Monk", "Fear and Loathing in Las Vegas", "Th
 
 50.times do
   movie = movies.sample
-  Video.create(title: movie, description: Faker::Lorem.paragraph(Random.rand(1..3)), small_cover_url: "http://placehold.it/166x236.jpg&text=#{movie}", large_cover_url: "http://placehold.it/655x375.jpg&text=#{movie}", category: Category.find(Random.rand(1..5))) 
+  Video.create(title: movie, description: Faker::Lorem.paragraph(Random.rand(1..3)), small_cover_url: "http://placehold.it/166x236.jpg/333/fff&text=#{movie}", large_cover_url: "http://placehold.it/655x375.jpg/333/fff&text=#{movie}", category: Category.find(Random.rand(1..5))) 
 end
 
 15.times { User.create(email: Faker::Internet.email, full_name: Faker::Name.name, password: "secret") }

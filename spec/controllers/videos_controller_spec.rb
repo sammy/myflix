@@ -6,6 +6,7 @@ describe VideosController do
     
     context "with authenticated users" do    
       let(:video) { Fabricate(:video) } 
+
       before :each do 
         user = Fabricate(:user)
         session[:user_id] = user.id
@@ -15,6 +16,13 @@ describe VideosController do
       it "sets the @video instance variable" do
         expect(assigns(:video)).to eq(video)
       end
+
+      it "sets the @reviews instance variable" do
+        review1 = Fabricate(:review, video: video)
+        review2 = Fabricate(:review, video: video)
+        expect(assigns(:reviews)).to match_array [review1, review2]
+      end 
+
     end
 
     context "with non authenticated users" do
