@@ -19,7 +19,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
-    redirect_to root_path, info: "You have signed out"
+    redirect_to root_path, alert: "You have signed out"
   end
 
 end

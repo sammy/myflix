@@ -9,12 +9,9 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to sign_in_path
     else
-      binding.pry
       render :new
-    end
-    
+    end    
   end
-
 
   private
 
