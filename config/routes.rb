@@ -10,6 +10,8 @@ Myflix::Application.routes.draw do
     collection do
       post :search
     end
+
+    resources :reviews, only: [:create]
   end
 
   resources :categories, only: [:show]
