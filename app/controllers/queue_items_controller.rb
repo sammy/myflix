@@ -6,7 +6,6 @@ class QueueItemsController < ApplicationController
   end
 
   def create
-    # binding.pry
     @queue_item = QueueItem.new(video_id: params[:video_id], user_id: current_user.id, position: set_position)
     if @queue_item.save
       redirect_to my_queue_path
@@ -17,8 +16,12 @@ class QueueItemsController < ApplicationController
     end
   end 
 
+  def destroy
+    redirect_to my_queue_path
+  end
 
-  protected
+
+  private
 
   def set_position
     QueueItem.where("user_id = ?", session[:user_id]).count + 1

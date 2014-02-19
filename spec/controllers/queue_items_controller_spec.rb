@@ -7,8 +7,8 @@ describe QueueItemsController do
     it "sets the queue_items instance variable for the current user" do
       user = Fabricate(:user)
       session[:user_id] = user.id
-      queue_item1 = Fabricate(:queue_item, user: user)
-      queue_item2 = Fabricate(:queue_item, user: user)
+      queue_item1 = Fabricate(:queue_item, video_id: 2, user: user)
+      queue_item2 = Fabricate(:queue_item, video_id: 3, user: user)
       get :index
       expect(assigns(:queue_items)).to match_array([queue_item1,queue_item2])
     end
@@ -48,5 +48,19 @@ describe QueueItemsController do
         expect(response).to redirect_to sign_in_path
       end
     end
+  end
+
+  describe "DELETE destroy" do
+    it "redirects to the queue page" do
+      user = Fabricate(:user)
+      session[:user_id] = user.id
+      queue_item = Fabricate(:queue_item, user: user)
+      delete :destroy, id: queue_item.id
+      expect(response).to redirect_to my_queue_path
+    end
+    it "removes the item from the queue" 
+    it "does not delete another user's queue item"
+    it "redirect to the sign_in_path for nonauthenticated users"
+
   end
 end
