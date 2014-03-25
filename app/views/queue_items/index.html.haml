@@ -26,7 +26,7 @@
                   %td
                     = button_to "Play", nil, class: "btn btn-default"
                   %td
-                    = qi.rating
+                    = select_tag "queue_items[][rating]", options_for_video_reviews(qi.rating), include_blank: true,class: 'form-control'
                     / %select.form-group(name="")
                     /   %option(value="5") 5 Stars
                     /   %option(value="4") 4 Stars
