@@ -20,7 +20,7 @@ class QueueItemsController < ApplicationController
     queue_item = QueueItem.find(params[:id])
     if queue_item.user == current_user
       queue_item.destroy
-      normalize_queue
+      current_user.normalize_queue
     end
     redirect_to my_queue_path
   end
@@ -28,7 +28,7 @@ class QueueItemsController < ApplicationController
   def reorder
     begin
       update_queue_positions
-      normalize_queue
+      current_user.normalize_queue
     rescue ActiveRecord::RecordInvalid
       flash[:danger] = "List order should contain integer numbers"
     end
@@ -50,10 +50,5 @@ class QueueItemsController < ApplicationController
     end
   end
 
-  def normalize_queue
-    current_user.queue_items.each_with_index do |queue_item, index|
-      queue_item.update(position: index+1)
-    end
-  end
 
 end 
