@@ -8,6 +8,9 @@ gem 'haml-rails'
 gem 'sass-rails'
 gem 'uglifier'
 gem 'jquery-rails'
+gem 'bootstrap_form'
+gem 'bcrypt-ruby'
+gem 'therubyracer'
 
 group :development, :test do
   gem 'sqlite3'
@@ -17,6 +20,9 @@ group :development, :test do
   gem "better_errors"
   gem "binding_of_caller"
   gem "meta_request"
+  gem "brakeman"
+  gem "fabrication"
+  gem "faker"
 end
 
 group :development, :test do
@@ -31,4 +37,3 @@ group :production do
   gem 'pg'
   gem 'rails_12factor'
 end
-
