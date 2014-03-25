@@ -1,6 +1,6 @@
 class QueueItem < ActiveRecord::Base
   validates_uniqueness_of :video_id, scope: :user_id, :message => "is already in the queue!"
-
+  validates_numericality_of :position, only_integer: true
   belongs_to :user
   belongs_to :video
   
