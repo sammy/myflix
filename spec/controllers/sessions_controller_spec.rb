@@ -5,7 +5,7 @@ describe SessionsController do
   describe "GET new" do
     context "with authenticated user" do
       it "redirects to home_path" do
-        session[:user_id] = Fabricate(:user).id
+        set_current_user
         get :new
         expect(response).to redirect_to home_path
       end
@@ -17,11 +17,9 @@ describe SessionsController do
         expect(response).to render_template :new
       end
     end
-
   end
 
   describe "POST create" do
-
     context "with valid credentials" do
       let!(:a_user) { Fabricate(:user, email: "joe@doe.com", password: "secret") }
       

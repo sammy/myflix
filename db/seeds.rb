@@ -6,11 +6,11 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-movies = ["Southpark", "Futurama", "Monk", "Fear and Loathing in Las Vegas", "The Hunt", "De zwarte boek", "Attenberg", "From Dusk till Dawn", "The Experiment"]
+movies = ["Southpark", "Futurama", "Monk", "Fear and Loathing in Las Vegas", "The Hunt", "De zwarte boek", "Attenberg", "From Dusk till Dawn", "The Experiment", "Mad Max", "Where the Buffalo roams", "Terminator", "Alien", "Simone", "Naked Gun", "The Party", "Up in smoke"]
 
 5.times { Category.create(name: Faker::Commerce.department)}
 
-50.times do
+10.times do
   movie = movies.sample
   Video.create(title: movie, description: Faker::Lorem.paragraph(Random.rand(1..3)), small_cover_url: "http://placehold.it/166x236.jpg/333/fff&text=#{movie}", large_cover_url: "http://placehold.it/655x375.jpg/333/fff&text=#{movie}", category: Category.find(Random.rand(1..5))) 
 end

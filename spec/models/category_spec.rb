@@ -29,7 +29,7 @@ describe Category do
     expect(comedies.recent_videos).to_not include(huckabees)
    end
 
-   it "returns an emty array if there are no videos" do
+   it "returns an empty array if there are no videos" do
     expect(comedies.recent_videos).to eq []
    end
   end
