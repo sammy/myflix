@@ -23,7 +23,7 @@ Myflix::Application.routes.draw do
   get 'my_queue', to: "queue_items#index"
   post 'queue_items_reorder', to: "queue_items#reorder"
   
-  resources :users, only: [:create]
+  resources :users, only: [:create, :show]
   resources :sessions, only: [:create]
 
 end
