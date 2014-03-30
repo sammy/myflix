@@ -18,7 +18,7 @@
               - @queue_items.each do |qi|
                 %tr
                   %td
-                    = text_field_tag "queue_items[][position]", qi.position, class: 'form-control'
+                    = text_field_tag "queue_items[][position]", qi.position, class: 'form-control', id: "video_#{qi.video.id}"
                     = hidden_field_tag "queue_items[][id]", qi.id
                     / %input.form-control(type="text" value="1")
                   %td

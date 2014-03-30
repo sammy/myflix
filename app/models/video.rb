@@ -13,8 +13,4 @@ class Video < ActiveRecord::Base
     title.gsub(/\s+/, "")
   end
 
-  def in_queue_of?(user)
-    user.queue_items.exists?
-  end
-
 end
