@@ -9,5 +9,12 @@ class Video < ActiveRecord::Base
     where("title LIKE ?", "%#{term}%").order("created_at DESC")
   end
 
+  def title_id
+    title.gsub(/\s+/, "")
+  end
+
+  def in_queue_of?(user)
+    user.queue_items.exists?
+  end
 
 end

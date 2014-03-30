@@ -4,5 +4,5 @@
       %h3= link_to cat.name, category_path(cat) unless cat.videos.empty?
     .videos.row
       - cat.recent_videos.each do |vid|
-        = link_to(image_tag(vid.small_cover_url), video_path(vid)) 
+        = link_to(image_tag(vid.small_cover_url), video_path(vid),id: vid.title_id) 
 

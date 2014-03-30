@@ -2,15 +2,12 @@ require 'spec_helper'
 
 feature 'Signing in' do 
   
-  background do
-    User.create(email: 'someone@myflix.com', password: 'Password123', full_name: 'Some User')
-  end
+  
+  given(:user) {User.create(email: 'someone@myflix.com', password: 'Password123', full_name: 'Some User')}
+  
 
   scenario 'Signing in with correct credentials' do
-    visit sign_in_path
-    fill_in "email", with: 'someone@myflix.com'
-    fill_in "password", with: 'Password123'
-    click_button 'Sign in'
+    sign_in(user)
     expect(page).to have_content 'Welcome, Some User'
   end
 
