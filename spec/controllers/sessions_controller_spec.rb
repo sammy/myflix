@@ -20,7 +20,6 @@ describe SessionsController do
   end
 
   describe "POST create" do
-
     context "with valid credentials" do
       let!(:a_user) { Fabricate(:user, email: "joe@doe.com", password: "secret") }
       
