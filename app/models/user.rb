@@ -19,4 +19,8 @@ class User < ActiveRecord::Base
   def queued_video?(video)
     queue_items.map(&:video).include?(video)
   end
+
+  def name_id
+    full_name.gsub(/\s+/, "")
+  end
 end

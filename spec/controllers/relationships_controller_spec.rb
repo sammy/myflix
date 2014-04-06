@@ -54,11 +54,11 @@ describe RelationshipsController do
       let(:action) { post :create, id: 1 }
     end    
 
-    it "redirects to user profile page" do
+    it "redirects to people page" do
       joe = Fabricate(:user)
       set_current_user
       post :create, id: joe.id
-      expect(response).to redirect_to user_path(current_user)
+      expect(response).to redirect_to people_path
     end
 
     it "creates a following relationship" do

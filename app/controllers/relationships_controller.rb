@@ -14,11 +14,11 @@ class RelationshipsController < ApplicationController
   def create
     @relationship = Relationship.new(leader_id: params[:id], follower_id: current_user.id)
     if @relationship.save
-      flash[:message] = "Succesfully followed #{@relationship.leader.full_name}"
+      flash[:message] = "You are now following #{@relationship.leader.full_name}"
     else
       flash[:danger] = @relationship.errors.full_messages[0]
     end
-    redirect_to user_path(current_user)
+    redirect_to people_path
   end
 
 end
