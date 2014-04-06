@@ -21,9 +21,11 @@ Myflix::Application.routes.draw do
   get 'sign_in', to: "sessions#new"
   get 'sign_out', to: "sessions#destroy"
   get 'my_queue', to: "queue_items#index"
+  get 'people', to: "relationships#index"
   post 'queue_items_reorder', to: "queue_items#reorder"
   
   resources :users, only: [:create, :show]
   resources :sessions, only: [:create]
+  resources :relationships, only: [:destroy, :create]
 
 end
