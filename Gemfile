@@ -23,6 +23,7 @@ group :development, :test do
   gem "brakeman"
   gem "fabrication"
   gem "faker"
+  gem "letter_opener"
 end
 
 group :development, :test do

@@ -39,6 +39,27 @@ describe UsersController do
         expect(response).to render_template :new 
       end
     end
+
+    context "email sending" do
+      
+      it "sends out an email" do
+        post :create, user: Fabricate.attributes_for(:user)
+        ActionMailer::Base.deliveries.should_not be_empty
+      end
+      it "sends the email to the correct recipient" do
+        user = Fabricate.attributes_for(:user)
+        post :create, user: user
+        message = ActionMailer::Base.deliveries.last      
+        message.to.should eq([user[:email]])
+      end
+      it "sends the email with the correct content" do
+        user = Fabricate.attributes_for(:user)
+        post :create, user: user
+        message = ActionMailer::Base.deliveries.last
+        message.body.should include("Welcome to Myflix!")
+      end
+    end 
+
   end
 
   describe "GET show" do
