@@ -23,4 +23,23 @@ class User < ActiveRecord::Base
   def name_id
     full_name.gsub(/\s+/, "")
   end
+
+  def password_reset_link
+    Rails.application.routes.url_helpers.password_reset_url + "/#{token}"
+  end
+
+  def generate_token
+    token = SecureRandom.urlsafe_base64
+    update_attribute('token', token)
+    update_attribute('token_expiration', updated_at + 120.minutes)
+  end
+
+  def password_link_expired?
+    if Time.now > token_expiration
+      true
+    elsif Time.now < token_expiration || Time.now == token_expiration
+      false
+    end
+  end
+
 end

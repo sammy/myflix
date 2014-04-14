@@ -5,3 +5,4 @@ shared_examples "require log-in" do
     response.should redirect_to sign_in_path
   end
 end
+
