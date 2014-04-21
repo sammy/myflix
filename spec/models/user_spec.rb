@@ -21,4 +21,36 @@ describe User do
       expect(fake_user.queued_video?(video)).to be_false 
     end
   end
+
+  describe "#password_reset_link" do
+    it "generates a password reset url appended with user token" do
+      user = Fabricate(:user, token: 'randomstring')
+      expect(user.password_reset_link).to eq('http://localhost:3000/password_reset/randomstring')
+    end
+  end
+
+  describe "#generate_token" do
+    it "generates a token for the user" do
+      user = Fabricate(:user)
+      user.generate_token
+      expect(user.reload.token).to_not be_nil
+    end
+    it "sets an expiration date for the token" do
+      user = Fabricate(:user)
+      user.generate_token
+      expect(user.reload.token_expiration).to_not be_nil
+    end
+  end
+
+  describe "#password_link_expired?" do
+    it "returns true if the token_expiration date is in the past" do
+      user = Fabricate(:user, token: "randomstring", token_expiration: Time.now - 5.minutes)
+      expect(user.password_link_expired?).to be_true
+    end
+    it "returns false if the token_expiration date is in the future" do
+      user = Fabricate(:user, token: "randomstring", token_expiration: Time.now + 5.minutes)
+      expect(user.password_link_expired?).to be_false
+    end
+  end
+
 end

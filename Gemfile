@@ -23,6 +23,7 @@ group :development, :test do
   gem "brakeman"
   gem "fabrication"
   gem "faker"
+  gem "letter_opener"
 end
 
 group :development, :test do
@@ -33,6 +34,7 @@ group :test do
   gem "shoulda-matchers"
   gem "capybara"
   gem "launchy"
+  gem "simplecov-rcov"
 end
 
 group :production do

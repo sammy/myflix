@@ -22,7 +22,6 @@ feature 'Social Networking' do
     expect(page).to have_content('You are now following Felix Thecat')
 
     click_link("unfollow_FelixThecat")
-    save_and_open_page
     expect(page).to have_content('People I Follow')
     expect(page).to_not have_content('Felix Thecat')
   end
