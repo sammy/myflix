@@ -19,6 +19,7 @@ Myflix::Application.routes.draw do
   resources :sessions, only: [:create]
   resources :relationships, only: [:destroy, :create]
   resources :forgot_passwords, only: [:create]
+  resources :invitations, only: [:new,:create]
 
   get 'home',                     to: "videos#home"
 
@@ -36,5 +37,4 @@ Myflix::Application.routes.draw do
   get 'confirm_password_reset',   to: "forgot_passwords#index"
   get 'password_reset(/:token)',  to: "forgot_passwords#edit",    as: :password_reset  
   post 'update_password',         to: "forgot_passwords#update"
-
 end
