@@ -34,6 +34,14 @@ class User < ActiveRecord::Base
     update_attribute('token_expiration', updated_at + 120.minutes)
   end
 
+  def follows?(another_user)
+    following_relationships.map(&:leader).include?(another_user)
+  end
+
+  def follow(another_user)
+    following_relationships.create(leader: another_user) unless another_user == self
+  end
+
   def password_link_expired?
     if Time.now > token_expiration
       true

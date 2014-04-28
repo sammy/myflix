@@ -12,17 +12,40 @@ describe UsersController do
   describe "POST create" do
 
     context "with valid input" do
-      before do
-        post :create, user: Fabricate.attributes_for(:user)
-      end
 
       it "creates a new user in the database" do
+        post :create, user: Fabricate.attributes_for(:user)
         expect(User.count).to eq(1)
       end
 
       it "redirects to the sign-in page" do
+        post :create, user: Fabricate.attributes_for(:user)
         expect(response).to redirect_to sign_in_path
       end
+
+      it 'makes the user follow the inviter' do
+        alice = Fabricate(:user)
+        invitation = Fabricate(:invitation, recipient_name: 'Joe Doe', recipient_email: 'joe@doe.com', inviter_id: alice.id)
+        post :create, user: {full_name: invitation.recipient_name, email: invitation.recipient_email, password: 'password'}, invitation: {token: invitation.token}
+        joe = User.last
+        expect(joe.follows?(alice)).to be_true
+      end
+
+      it 'makes the inviter follow the user' do
+        alice = Fabricate(:user)
+        invitation = Fabricate(:invitation, recipient_name: 'Joe Doe', recipient_email: 'joe@doe.com', inviter_id: alice.id)
+        post :create, user: {full_name: invitation.recipient_name, email: invitation.recipient_email, password: 'password'}, invitation: {token: invitation.token}
+        joe = User.last
+        expect(alice.follows?(joe)).to be_true
+      end
+
+      it 'expires the invitation upon acceptance' do
+        alice = Fabricate(:user)
+        invitation = Fabricate(:invitation, recipient_name: 'Joe Doe', recipient_email: 'joe@doe.com', inviter_id: alice.id)
+        post :create, user: {full_name: invitation.recipient_name, email: invitation.recipient_email, password: 'password'}, invitation: {token: invitation.token}
+        expect(Invitation.last.token).to be_nil
+      end
+
     end
 
     context "with invalid input" do 
@@ -72,6 +95,43 @@ describe UsersController do
       user = Fabricate(:user)
       get :show, id: user.id
       expect(assigns(:user)).to eq(user)
+    end
+  end
+
+  describe "GET register_with_token" do
+
+    it "sets the invitation variable" do
+      invitation = Fabricate(:invitation)
+      get :register_with_token, token: invitation.token
+      expect(invitation).to be_present
+    end
+
+    it "sets the @user instance variable with recipients name" do
+      invitation = Fabricate(:invitation)
+      get :register_with_token, token: invitation.token
+      expect(assigns(:user).full_name).to eq(invitation.recipient_name)
+    end
+
+    it 'sets @invitation instace variable' do
+      invitation = Fabricate(:invitation)
+      get :register_with_token, token: invitation.token
+      expect(assigns(:invitation).token).to eq(invitation.token)      
+    end 
+
+    it "sets the @user instance variable with recipients email" do
+      invitation = Fabricate(:invitation)
+      get :register_with_token, token: invitation.token
+      expect(assigns(:user).email).to eq(invitation.recipient_email)
+    end
+
+    it 'redirects to register_with_token_path if the token is invalid' do
+      get :register_with_token, token: 'someRandomToken'
+      expect(response).to redirect_to register_path      
+    end
+
+    it 'displays an error message if the token is invalid' do
+      get :register_with_token, token: 'someRandomToken'
+      expect(flash[:danger]).to eq("Your token has expired")
     end
   end
 end

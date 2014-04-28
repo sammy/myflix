@@ -53,4 +53,33 @@ describe User do
     end
   end
 
+  describe '#follows?' do
+    it 'returns true if a user follows another user' do
+      joe = Fabricate(:user)
+      alice = Fabricate(:user)
+      Fabricate(:relationship, leader_id: alice.id, follower_id: joe.id)
+      expect(joe.follows?(alice)).to be_true
+    end
+
+    it 'returns false if the user does not follow another user' do
+      joe = Fabricate(:user)
+      alice = Fabricate(:user)
+      expect(joe.follows?(alice)).to be_false
+    end
+  end
+
+  describe '#follow(another_user)' do
+    it 'follows the user passed as argument' do
+      joe = Fabricate(:user)
+      alice = Fabricate(:user)
+      joe.follow(alice)
+      expect(joe.follows?(alice)).to be_true
+    end
+
+    it 'does not follow one s self' do
+      joe = Fabricate(:user)
+      joe.follow(joe)
+      expect(joe.follows?(joe)).to be_false
+    end
+  end
 end

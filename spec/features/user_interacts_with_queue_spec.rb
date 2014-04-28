@@ -39,6 +39,4 @@ feature 'User interacts with queue' do
     find_field("video_#{the_dark_knight.id}").value.should == '1'
     find_field("video_#{the_avengers.id}").value.should == '2'
   end
-
-
 end

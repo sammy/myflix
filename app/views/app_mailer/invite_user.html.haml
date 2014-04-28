@@ -3,9 +3,9 @@
   %head
   %body
     %section
-      %h3 #{@invitation.recipient_name}, you have been invited to Myflix by #{@invitation.user.full_name}.
+      %h3 #{@invitation.recipient_name}, you have been invited to Myflix by #{@invitation.inviter.full_name}.
       %p= @invitation.message
       %p Click on the link below to register to Myflix
-      =link_to "Take me to Myflix!", sign_in_url, id: 'invitation'
+      =link_to "Take me to Myflix!", register_with_token_url(@invitation.token)
     %footer
       &copy 2013 MyFLiX
