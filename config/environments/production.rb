@@ -23,11 +23,11 @@ Myflix::Application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address:              'smtp.gmail.com',
+    address:              'smtp.mailgun.org',
     port:                 587,
-    domain:               'gmail.com',
-    user_name:             ENV['GMAIL_USERNAME'],
-    password:             ENV['GMAIL_PASSWORD'],
+    domain:               'sandbox23de00cba2ee4381ad9feb651eb4f544.mailgun.org',
+    user_name:            ENV['MAILGUN_USERNAME'],
+    password:             ENV['MAILGUN_PASSWORD'],
     authentication:       'plain',
     enable_starttls_auto: true 
   }
