@@ -38,7 +38,6 @@ class UsersController < ApplicationController
   end 
 
   def handle_invitation
-    binding.pry
     if !params[:invitation][:token].blank?
         invitation = Invitation.find_by(token: params[:invitation][:token])
         inviter = invitation.inviter
