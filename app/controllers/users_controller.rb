@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     if @user.save
       handle_invitation
       redirect_to sign_in_path
-      AppMailer.sign_in_notification(@user).deliver
+      AppMailer.delay.sign_in_notification(@user).deliver
     else
       render :new
     end    
