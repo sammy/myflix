@@ -44,5 +44,6 @@ group :production, :staging do
   gem 'rails_12factor'
   gem 'sidekiq'
   gem 'unicorn'
+  gem 'sentry-raven'
 end
 
