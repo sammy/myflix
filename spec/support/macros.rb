@@ -1,5 +1,5 @@
-def set_current_user(new_user=nil)
-  new_user ||= Fabricate(:user)
+def set_current_user(new_user=nil,level='normal')
+  new_user ||= Fabricate(:user, is_admin: level == 'normal' ? false : true)
   session[:user_id] = new_user.id
 end
 

@@ -11,6 +11,7 @@ gem 'jquery-rails'
 gem 'bootstrap_form'
 gem 'bcrypt-ruby'
 gem 'therubyracer'
+gem 'paratrooper'
 
 group :development, :test do
   gem 'sqlite3'
@@ -25,6 +26,7 @@ group :development, :test do
   gem "faker"
   gem "letter_opener"
   gem "sidekiq"
+  gem "spring"
 end
 
 group :development, :test do
