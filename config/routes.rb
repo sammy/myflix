@@ -21,6 +21,10 @@ Myflix::Application.routes.draw do
   resources :forgot_passwords, only: [:create]
   resources :invitations, only: [:new,:create]
 
+  namespace :admin do
+    resources :videos, only: [:new, :create]
+  end
+
   get 'home',                     to: "videos#home"
 
   get 'register',                 to: "users#new"

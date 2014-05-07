@@ -8,6 +8,7 @@
     = stylesheet_link_tag "application"
     = javascript_include_tag "application"
   %body
+    #envir The current environment is #{Rails.env}
     %header
       = render 'shared/header'
     %section.content.clearfix

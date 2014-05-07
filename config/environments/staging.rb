@@ -5,7 +5,7 @@ Myflix::Application.configure do
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
 
-  config.domain = 'vast-dusk-1649.herokuapp.com'
+  config.domain = 'hidden-scrubland-5956.herokuapp.com'
 
 
   config.serve_static_assets = false
