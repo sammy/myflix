@@ -12,6 +12,9 @@ gem 'bootstrap_form'
 gem 'bcrypt-ruby'
 gem 'therubyracer'
 gem 'paratrooper'
+gem 'carrierwave'
+gem 'fog'
+gem 'sidekiq'
 
 group :development, :test do
   gem 'sqlite3'
@@ -25,11 +28,7 @@ group :development, :test do
   gem "fabrication"
   gem "faker"
   gem "letter_opener"
-  gem "sidekiq"
-  gem "spring"
-end
-
-group :development, :test do
+  # gem "spring"
   gem "rspec-rails"
 end
 
@@ -44,8 +43,6 @@ end
 group :production, :staging do
   gem 'pg'
   gem 'rails_12factor'
-  gem 'sidekiq'
   gem 'unicorn'
   gem 'sentry-raven'
 end
-

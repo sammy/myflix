@@ -1,6 +1,7 @@
 class Video < ActiveRecord::Base
   belongs_to :category
   has_many :reviews, -> { order "created_at DESC" }
+  mount_uploader :image, ImageUploader
   
   validates :title, :description, presence: true
 
