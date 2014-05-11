@@ -13,6 +13,7 @@ gem 'bcrypt-ruby'
 gem 'therubyracer'
 gem 'paratrooper'
 gem 'carrierwave'
+gem 'mini_magick'
 gem 'fog'
 gem 'sidekiq'
 

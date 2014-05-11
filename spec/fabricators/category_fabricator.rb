@@ -1,4 +1,3 @@
 Fabricator(:category) do
-  name { Faker::Lorem.words(2) }
-
+  name { Faker::Lorem.sentence(2) }
 end
