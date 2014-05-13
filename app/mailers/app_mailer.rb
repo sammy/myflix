@@ -18,6 +18,6 @@ class AppMailer < ActionMailer::Base
   private
 
   def recipient(user)
-    Rails.env.production? ? user : 'flouts@gmail.com'
+    Rails.env.production? || Rails.env.test? ? user : 'flouts@gmail.com'
   end
 end

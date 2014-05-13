@@ -23,6 +23,9 @@ describe UsersController do
         post :create, user: Fabricate.attributes_for(:user)
         expect(response).to redirect_to sign_in_path
       end
+    end
+
+    context 'with invitation present' do
 
       it 'makes the user follow the inviter' do
         alice = Fabricate(:user)
@@ -46,7 +49,6 @@ describe UsersController do
         post :create, user: {full_name: invitation.recipient_name, email: invitation.recipient_email, password: 'password'}, invitation: {token: invitation.token}
         expect(Invitation.last.token).to be_nil
       end
-
     end
 
     context "with invalid input" do 
@@ -70,12 +72,14 @@ describe UsersController do
         post :create, user: Fabricate.attributes_for(:user)
         ActionMailer::Base.deliveries.should_not be_empty
       end
+
       it "sends the email to the correct recipient" do
         user = Fabricate.attributes_for(:user)
         post :create, user: user
         message = ActionMailer::Base.deliveries.last      
         message.to.should eq([user[:email]])
       end
+
       it "sends the email with the correct content" do
         user = Fabricate.attributes_for(:user)
         post :create, user: user

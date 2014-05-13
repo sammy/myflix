@@ -16,3 +16,6 @@
 
 # Ignore simplecov's coverage folder
 /coverage
+
+# ignore uploads folder
+/public/uploads/tmp/*
