@@ -9,7 +9,7 @@
     = javascript_include_tag "application"
     = yield :head
   %body
-    #envir The current environment is #{Rails.env}
+    #envir= "The current environment is #{Rails.env}" unless Rails.env == 'production'
     %header
       = render 'shared/header'
     %section.content.clearfix
