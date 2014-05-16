@@ -16,6 +16,9 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'fog'
 gem 'sidekiq'
+gem 'stripe'
+gem 'figaro'
+gem 'sinatra'
 
 group :development, :test do
   gem 'sqlite3'

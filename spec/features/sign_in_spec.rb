@@ -16,7 +16,7 @@ feature 'Signing in' do
     fill_in 'email', with: 'someone@flix.com'
     fill_in 'password', with: 'wrongpassword'
     click_button 'Sign in'
-    expect(page).to have_content 'Incorrect username or password'
+    expect(page).to have_content 'Incorrect username or password' 
   end
   
 end

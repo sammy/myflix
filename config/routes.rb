@@ -43,4 +43,8 @@ Myflix::Application.routes.draw do
   get 'password_reset(/:token)',  to: "forgot_passwords#edit",            as: :password_reset  
   post 'update_password',         to: "forgot_passwords#update"
 
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq' 
+
+
 end

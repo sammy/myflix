@@ -1,3 +1,9 @@
+=content_for :head do
+  %script(src="https://js.stripe.com/v2/")
+  :javascript
+    Stripe.setPublishableKey("#{ENV['STRIPE_TEST_PUBLIC_KEY']}");
+
+
 %section.register.container
   .row
     .col-sm-10.col-sm-offset-1
@@ -9,6 +15,13 @@
           = f.text_field :full_name, label: "Full Name"
           = hidden_field(:invitation, :token)
         %fieldset.credit_card
+          / = javascript_include_tag "https://checkout.stripe.com/checkout.js",
+          /                           :class => "stripe-button",
+          /                           :"data-key" => "#{ENV['STRIPE_TEST_PUBLIC_KEY']}",
+          /                           :"data-amount" => "999",
+          /                           :"data-name" => "Demo Payment!",
+          /                           :"data-description" => "Paying from localhost!",
+          /                           :"data-image" => "/128x128.png" 
           .form-group
             %label.control-label.col-sm-2 Credit Card Number
             .col-sm-6
