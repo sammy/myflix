@@ -29,7 +29,7 @@ feature 'Video upload' do
 
     visit sign_in_path
     sign_in(the_user)
-    expect(page).to have_content('Comedies')
+    expect(page).to have_content('Come
     page.has_css?('a#ATestVideo') 
     page.should have_xpath("//img[contains(@src,\"https://s3-eu-west-1.amazonaws.com/dev-bckt.full.of.crap/images/video/1_ATestVideo_small_cover\")]")
     
