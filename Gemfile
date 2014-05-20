@@ -32,8 +32,8 @@ group :development, :test do
   gem "fabrication"
   gem "faker"
   gem "letter_opener"
-  # gem "spring"
   gem "rspec-rails"
+  gem "selenium-webdriver"
 end
 
 group :test do

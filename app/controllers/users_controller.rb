@@ -18,6 +18,7 @@ class UsersController < ApplicationController
       if charge.successful?
         @user.save
         handle_invitation
+        flash[:success] = 'You have registered successfully!'
         redirect_to sign_in_path
         AppMailer.sign_in_notification(@user).deliver
       else
