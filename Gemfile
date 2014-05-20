@@ -42,6 +42,9 @@ group :test do
   gem "capybara-email"
   gem "launchy"
   gem "simplecov-rcov"
+  gem "vcr"
+  gem "webmock"
+  gem "database_cleaner"
 end
 
 group :production, :staging do

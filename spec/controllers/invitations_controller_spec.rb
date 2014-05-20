@@ -64,6 +64,8 @@ describe InvitationsController do
 
     context "with invalid input" do
 
+      after { ActionMailer::Base.deliveries.clear }
+
       it "should redirect to invitations_path" do
         set_current_user
         post :create, invitation: { recipient_email: 'joe.doe@joe.com', message: 'Check this out!', inviter_id: current_user.id }
