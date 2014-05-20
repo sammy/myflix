@@ -19,6 +19,7 @@ gem 'sidekiq'
 gem 'stripe'
 gem 'figaro'
 gem 'sinatra'
+gem 'draper', '~> 1.3'
 
 group :development, :test do
   gem 'sqlite3'

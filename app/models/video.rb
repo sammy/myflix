@@ -16,4 +16,7 @@ class Video < ActiveRecord::Base
     title.gsub(/\s+/, "")
   end
 
+  def rating
+    reviews.average(:rating).round(1) if reviews.average(:rating)
+  end
 end
