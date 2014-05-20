@@ -32,8 +32,8 @@ group :development, :test do
   gem "fabrication"
   gem "faker"
   gem "letter_opener"
-  # gem "spring"
   gem "rspec-rails"
+  gem "selenium-webdriver"
 end
 
 group :test do
@@ -42,6 +42,9 @@ group :test do
   gem "capybara-email"
   gem "launchy"
   gem "simplecov-rcov"
+  gem "vcr"
+  gem "webmock"
+  gem "database_cleaner"
 end
 
 group :production, :staging do
