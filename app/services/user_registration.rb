@@ -11,10 +11,10 @@ class UserRegistration
   end
 
   def register
-    if user.valid?
+    if @user.valid?
       charge = StripeWrapper::Charge.create(:amount => 999, :card => stripetoken, :description => "Registration payment from #{user.full_name}")
       if charge.successful?
-        user.save
+        @user.save
         handle_invitation
         self.message = 'You have registered successfully! You can now login.'
         AppMailer.sign_in_notification(user).deliver
