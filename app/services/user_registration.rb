@@ -12,7 +12,10 @@ class UserRegistration
 
   def register
     if @user.valid?
-      charge = StripeWrapper::Charge.create(:amount => 999, :card => stripetoken, :description => "Registration payment from #{user.full_name}")
+      customer = StripeWrapper::Customer.create(:decription => "#{@user.full_name}-#{@user.email}", :card => stripeToken)
+      # charge = StripeWrapper::Charge.create(:amount => 999, :card => stripetoken, :description => "Registration payment from #{user.full_name}")
+      if customer.created?
+        StripeWrapper::Subscription.create(:customer => customer)
       if charge.successful?
         @user.save
         handle_invitation

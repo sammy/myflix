@@ -54,5 +54,27 @@ describe StripeWrapper do
         expect(response.error_message).to eq("Your card was declined.")
       end
     end  
+  end
+
+  describe StripeWrapper::Customer do
+    describe ".create" do
+      it "creates a customer in Stripe" do
+        user = Fabricate.attributes_for(:user)
+        Stripe.api_key = ENV['STRIPE_TEST_SECRET_KEY']
+        token = Stripe::Token.create(
+            :card  => {
+                        :number     =>  '4242424242424242',
+                        :exp_month  =>  12,
+                        :exp_year   =>  2016,
+                        :cvc        =>  666
+                    },).id
+        response = StripeWrapper::Customer.create(
+          :description => "#{user.full_name} - #{user.email}"
+          :card        => token)
+        expect(response).to be_successful
+      end
+
+      it "returns an error if the customer cannot be created"
+    end
   end  
 end
