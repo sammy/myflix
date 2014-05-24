@@ -2,13 +2,11 @@ require 'spec_helper'
 
 feature 'User invites friend' do
 
-  scenario 'user invites friend', :vcr do
+  scenario 'user invites friend', js: true do
     bob = Fabricate(:user, email: 'bob@bob.com')
     sign_in(bob)
-
     user_invites_friend(bob)
     sign_out(bob)
-    binding.pry
     friend_accepts_invitation
     jane = User.find_by(email: 'jane.something@home.com')
     jane.password = 'mypassword'    
@@ -28,11 +26,13 @@ feature 'User invites friend' do
     fill_in "invitation_recipient_email", with: 'jane.something@home.com'
     fill_in "invitation_message", with: "Join this nice website"
     click_button 'Send Invitation'
+    binding.pry
   end
 
   def friend_accepts_invitation
     open_email('jane.something@home.com')
     current_email.click_link('Take me to Myflix!')
+    binding.pry
     expect(page).to have_content('Register')
     find_field('user_email').value.should eq('jane.something@home.com')
     find_field('user_full_name').value.should eq('Jane Something')
@@ -42,7 +42,8 @@ feature 'User invites friend' do
     select '12 - December', :from => 'date_month'
     select '2017', :from => 'date_year'
     click_button 'Sign Up'
-    expect(open_email('jane.something@home.com')).to have_content('Jane Something, you have been invited to Myflix')
+    # expect(open_email('jane.something@home.com')).to have_content('Jane Something, you have been invited to Myflix')
+    expect(page).to have_content('You have registered successfully! You can now login.')
   end
 
   def user_follows_friend

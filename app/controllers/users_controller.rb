@@ -7,9 +7,8 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    registration = UserRegistration.new(@user, params[:stripeToken], params[:invitation][:token])
-    registration.register
-    
+    registration = UserRegistration.new(@user, params[:stripeToken], params[:invitation][:token]).register
+
     if registration.successful?
       flash[:success] = registration.message 
       redirect_to sign_in_path

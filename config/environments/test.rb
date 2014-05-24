@@ -2,7 +2,8 @@ Myflix::Application.configure do
   config.cache_classes = true
 
   # Set a default domain
-  config.domain = 'localhost:3000'
+  # config.domain = 'localhost:3000' 
+
 
   config.serve_static_assets = true
   config.static_cache_control = "public, max-age=3600"

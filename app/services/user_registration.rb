@@ -19,19 +19,22 @@ class UserRegistration
         self.message = 'You have registered successfully! You can now login.'
         AppMailer.sign_in_notification(user).deliver
         self.state = :success
+        self
       else
         self.message = charge.error_message
         self.state = :failure
+        self
       end
     else 
       self.message = "Please check the error messages. Your personal information is not correct."
       self.state = :failure
+      self
     end
   end
 
   def successful?
     state == :success
-  end 
+  end
 
   def failed?
     state == :failure
@@ -48,5 +51,4 @@ class UserRegistration
       invitation.update_column(:token, nil)
     end
   end
-  
 end

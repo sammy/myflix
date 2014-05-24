@@ -6,6 +6,7 @@
       %h3 #{@invitation.recipient_name}, you have been invited to Myflix by #{@invitation.inviter.full_name}.
       %p= @invitation.message
       %p Click on the link below to register to Myflix
-      =link_to "Take me to Myflix!", register_with_token_url(@invitation.token)
+      / =link_to "Take me to Myflix!", register_with_token_url(@invitation.token)
+      = link_to "Take me to Myflix!", url_for(controller: 'users', action: 'register_with_token',token: @invitation.token, only_path: false)
     %footer
       &copy 2013 MyFLiX
