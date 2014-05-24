@@ -25,8 +25,7 @@ class User < ActiveRecord::Base
   end
 
   def password_reset_link
-    # Rails.application.routes.url_helpers.password_reset_url + "/#{token}"
-    password_reset_url + "/#{token}"
+    Rails.application.routes.url_helpers.password_reset_url + "/#{token}"
   end
 
   def generate_token

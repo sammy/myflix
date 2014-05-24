@@ -1,7 +1,7 @@
 Myflix::Application.routes.draw do
 
   
-  # default_url_options host: Rails.application.config.domain
+  default_url_options host: Rails.application.config.domain
   
 
   get 'ui(/:action)', controller: 'ui'
