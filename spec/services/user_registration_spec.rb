@@ -5,11 +5,11 @@ describe UserRegistration do
   describe '#register' do
     context 'valid personal and payment data' do
 
-      let(:charge) { double(:charge, successful?: true) }
+      let(:customer) { double(:customer, successful?: true) }
       let(:user) { User.new(Fabricate.attributes_for(:user)) }
 
       before do
-        StripeWrapper::Charge.should_receive(:create).and_return(charge)
+        StripeWrapper::Customer.should_receive(:create).and_return(customer)
       end
 
       it "creates a new user in the database" do
@@ -54,11 +54,11 @@ describe UserRegistration do
 
     context "valid personal data, invalid payment data" do
 
-      let(:charge) { double(:charge, successful?: false, error_message: "Your card was declined.") }
+      let(:customer) { double(:customer, successful?: false, error_message: "Your card was declined.") }
       let(:user) { User.new(Fabricate.attributes_for(:user)) }
 
       before do
-        StripeWrapper::Charge.should_receive(:create).and_return(charge)
+        StripeWrapper::Customer.should_receive(:create).and_return(customer)
       end
 
       it "does not create a user in the database" do
@@ -92,13 +92,13 @@ describe UserRegistration do
 
   describe 'handle_invitation' do
 
-    let(:charge) { double(:charge, successful?: true) }
+    let(:customer) { double(:customer, successful?: true) }
     let(:alice) { Fabricate(:user) }
     let(:invitation) { Fabricate(:invitation, recipient_name: 'Joe Doe', recipient_email: 'joe@doe.com', inviter_id: alice.id) }
     let(:user)  { User.new(full_name: invitation.recipient_name, email: invitation.recipient_email, password: 'secret') }
 
     before do
-      StripeWrapper::Charge.should_receive(:create).and_return(charge)
+      StripeWrapper::Customer.should_receive(:create).and_return(customer)
     end
 
     context "with invitation token present" do
