@@ -1,0 +1,11 @@
+!!! 5
+%html(lang="en-US")
+  %head
+  %body
+    %section
+      %h3 #{@user.full_name} your account has been locked
+      %p We couldn't charge your #{@card.type} card, ending in #{@card.last4}.
+      %p As a result your Myflix account has been temporarily locked.
+      % Follow the instructions below to update your card details and unlock your account
+    %footer
+      &copy 2013 MyFLiX

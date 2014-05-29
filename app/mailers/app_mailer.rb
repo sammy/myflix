@@ -15,6 +15,12 @@ class AppMailer < ActionMailer::Base
     mail from: 'no-reply@myflix.com', to: recipient(@invitation.recipient_email) , subject: "#{@invitation.inviter.full_name} has invited you to MyFlix!"
   end
 
+  def notify_of_failed_payment(user,card)
+    @card = card
+    @user = user
+    mail from: 'billing@myflix.com', to: recipient(@user.email), subject: "Account locked"
+  end
+
   private
 
   def recipient(user)
