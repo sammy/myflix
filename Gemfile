@@ -20,6 +20,7 @@ gem 'stripe'
 gem 'figaro'
 gem 'sinatra'
 gem 'draper', '~> 1.3'
+gem 'stripe_event'
 
 group :development, :test do
   gem 'sqlite3'

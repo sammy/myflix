@@ -5,7 +5,7 @@ describe UserRegistration do
   describe '#register' do
     context 'valid personal and payment data' do
 
-      let(:customer) { double(:customer, successful?: true) }
+      let(:customer) { double(:customer, successful?: true, customer_token: "abcdefg") }
       let(:user) { User.new(Fabricate.attributes_for(:user)) }
 
       before do
@@ -15,6 +15,11 @@ describe UserRegistration do
       it "creates a new user in the database" do
         registration = UserRegistration.new(user, '12-xx-56', '').register
         expect(User.count).to eq(1)
+      end
+
+      it "stores the customer token from Stripe" do
+        registration = UserRegistration.new(user, '12-xx-56', '').register
+        expect(User.first.customer_token).to eq("abcdefg")
       end
 
       it "sets the registration message" do

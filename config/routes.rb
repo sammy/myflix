@@ -3,6 +3,7 @@ Myflix::Application.routes.draw do
   
   default_url_options host: Rails.application.config.domain
   
+  mount StripeEvent::Engine => '/stripe_events'
 
   get 'ui(/:action)', controller: 'ui'
 

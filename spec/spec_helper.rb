@@ -31,19 +31,12 @@ end
 
 RSpec.configure do |config|
 
-  config.include Capybara::DSL  
-
-  # Capybara.javascript_driver = :webkit_debug
-
-  Capybara.always_include_port = true
-
-  Capybara.default_host = "http://127.0.01"
-
+  
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
   config.use_transactional_fixtures = false
 
-  config.infer_base_class_for_anonymous_controllers = false
+  # config.infer_base_class_for_anonymous_controllers = false
 
   config.order = "random"
 

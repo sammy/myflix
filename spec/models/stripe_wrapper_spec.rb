@@ -59,6 +59,7 @@ describe StripeWrapper do
 
   describe StripeWrapper::Customer do
     describe ".create" do
+
       it "creates a customer in Stripe" do
         user = User.new(Fabricate.attributes_for(:user))
         Stripe.api_key = ENV['STRIPE_TEST_SECRET_KEY']
@@ -68,6 +69,17 @@ describe StripeWrapper do
           :card         => valid_token)
         # binding.pry
         expect(response).to be_successful
+      end
+
+      it "has a customer_token" do
+        user = User.new(Fabricate.attributes_for(:user))
+        Stripe.api_key = ENV['STRIPE_TEST_SECRET_KEY']
+        response = StripeWrapper::Customer.create(
+          :description  => "#{user.full_name} - #{user.email}",
+          :email        => "#{user.email}",
+          :card         => valid_token)
+        customer_token = response.response.id
+        expect(response.customer_token).to eq(customer_token)
       end
 
       it "returns an error if the customer cannot be created" do
