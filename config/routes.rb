@@ -9,23 +9,24 @@ Myflix::Application.routes.draw do
 
   root to: "pages#front"
 
-  resources :videos, only: [:show] do
+  resources :videos,            only: [:show] do
     collection do
       post :search
     end
-    resources :reviews, only: [:create]
+    resources :reviews,         only: [:create]
   end
 
-  resources :categories, only: [:show]
-  resources :queue_items, only: [:create, :destroy]
-  resources :users, only: [:create, :show]
-  resources :sessions, only: [:create]
-  resources :relationships, only: [:destroy, :create]
-  resources :forgot_passwords, only: [:create]
-  resources :invitations, only: [:new,:create]
+  resources :categories,        only: [:show]
+  resources :queue_items,       only: [:create, :destroy]
+  resources :users,             only: [:create, :show]
+  resources :sessions,          only: [:create]
+  resources :relationships,     only: [:destroy, :create]
+  resources :forgot_passwords,  only: [:create]
+  resources :invitations,       only: [:new,:create]
 
   namespace :admin do
-    resources :videos, only: [:new, :create]
+    resources :videos,          only: [:new, :create]
+    resources :payments,        only: [:index]
   end
 
   get 'home',                     to: "videos#home"
